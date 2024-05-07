@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 
-
-
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float horizontal;
@@ -18,8 +16,8 @@ public class PlayerController : MonoBehaviour
     {
         horizontal = move.ReadValue<Vector2>().x;
         vertical = move.ReadValue<Vector2>().y;
-
     }
+
     public void Interact(InputAction.CallbackContext interact)
     {
         if (interact.started)
@@ -27,18 +25,20 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Interactuando.");
         }
     }
+
     public void FixedUpdate()
     {
         rigidbody.velocity = new Vector3(horizontal * velocity, rigidbody.velocity.y, vertical * velocity);
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
         {
             Walk();
-
         }
     }
+
     private void Walk()
     {
         walkSound.Play();

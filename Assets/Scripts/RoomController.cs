@@ -15,6 +15,7 @@ public class RoomScript : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
     }
+
     private void Start()
     {
         audioSource.clip = RM.roomMusic;
@@ -23,20 +24,17 @@ public class RoomScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         MusicManager.musicManager.PlayDoors();
-
         if (other.tag == "Player")
         {
             audioSource.Play();
             OnCollisionEnter?.Invoke();
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         MusicManager.musicManager.PlayDoors();
-
         audioSource.Stop();
         OnCollisionExit?.Invoke();
-
     }
-
 }

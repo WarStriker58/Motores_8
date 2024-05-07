@@ -10,7 +10,6 @@ public class MusicManager : MonoBehaviour
 
     [SerializeField] private ScriptableObjectSound newSound;
     [SerializeField] private AudioMixer audioMixer;
-    //[SerializeField] private Image volumeSetter;
     private AudioSource audioSource;
     public static MusicManager musicManager { get; private set; }
 
