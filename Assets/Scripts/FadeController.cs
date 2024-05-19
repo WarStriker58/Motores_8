@@ -15,20 +15,24 @@ public class FadeController : MonoBehaviour
         RoomController.OnCollisionEnter += CallFadeIn;
         RoomController.OnCollisionExit += CallFadeOut;
     }
+    
     public void OnDisable()
     {
         RoomController.OnCollisionEnter -= CallFadeIn;
         RoomController.OnCollisionExit -= CallFadeOut;
     }
+    
     public void CallFadeIn()
     {
         StartCoroutine(FadeIn());
     }
+
     public void CallFadeOut()
     {
         StartCoroutine(FadeOut());
 
     }
+
     IEnumerator FadeIn()
     {
         currentColor = fadeImage.color;
@@ -39,6 +43,7 @@ public class FadeController : MonoBehaviour
             yield return new WaitForSeconds(0.04f);
         }
     }
+
     IEnumerator FadeOut()
     {
         currentColor = fadeImage.color;
@@ -50,6 +55,5 @@ public class FadeController : MonoBehaviour
         }
         currentColor.a = 0f;
         fadeImage.color = currentColor;
-
     }
 }
