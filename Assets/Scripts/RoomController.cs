@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class RoomScript : MonoBehaviour
+public class RoomController : MonoBehaviour
 {
     private AudioSource audioSource;
+    [SerializeField] private AudioSource backgroundMusic;
     [SerializeField] private AudioSource doorSound;
     public ScriptableObjectRoomMusic RM;
     public static event Action OnCollisionEnter;
@@ -14,6 +15,7 @@ public class RoomScript : MonoBehaviour
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        backgroundMusic.Play();
     }
 
     private void Start()
@@ -27,6 +29,7 @@ public class RoomScript : MonoBehaviour
         if (other.tag == "Player")
         {
             audioSource.Play();
+            backgroundMusic.mute = true;
             OnCollisionEnter?.Invoke();
         }
     }
@@ -35,6 +38,7 @@ public class RoomScript : MonoBehaviour
     {
         MusicManager.musicManager.PlayDoors();
         audioSource.Stop();
+        backgroundMusic.mute = false;
         OnCollisionExit?.Invoke();
     }
 }
